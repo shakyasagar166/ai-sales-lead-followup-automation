@@ -18,11 +18,13 @@ def test_list_leads():
     assert isinstance(leads, list)
     assert len(leads) >= 1
 
+import time
+
 def test_create_and_qualify_lead():
     payload = {
         "first_name": "Sophia",
         "last_name": "Alvarez",
-        "email": "sophia.alvarez@innovate-ai.tech",
+        "email": f"sophia.alvarez_{int(time.time() * 1000)}@innovate-ai.tech",
         "company": "Innovate AI",
         "job_title": "Chief Technology Officer",
         "industry": "Artificial Intelligence",
