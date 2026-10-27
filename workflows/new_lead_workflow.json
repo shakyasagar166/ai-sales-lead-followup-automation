@@ -1,0 +1,40 @@
+{
+  "name": "New Inbound Lead Processing & Triage Workflow",
+  "version": "1.0.0",
+  "trigger": "lead_created",
+  "description": "Triggered when a new prospect submits an inquiry form or is imported into the CRM.",
+  "steps": [
+    {
+      "step_id": "validate_email",
+      "type": "validation",
+      "action": "check_business_domain",
+      "on_failure": "flag_enrichment_needed"
+    },
+    {
+      "step_id": "ai_qualification",
+      "type": "agent",
+      "agent": "LeadQualificationAgent",
+      "output": ["qualification_status", "fit_summary", "recommended_cadence_days"]
+    },
+    {
+      "step_id": "ai_scoring",
+      "type": "agent",
+      "agent": "LeadScoringAgent",
+      "output": ["score", "priority", "intent_level"]
+    },
+    {
+      "step_id": "assign_rep",
+      "type": "routing",
+      "rules": [
+        {"condition": "priority == 'HOT'", "assignee": "Senior Enterprise AE"},
+        {"condition": "priority in ['HIGH', 'MEDIUM']", "assignee": "Territory SDR"}
+      ]
+    },
+    {
+      "step_id": "generate_cadence",
+      "type": "agent",
+      "agent": "FollowUpPlanningAgent",
+      "output": ["cadence_touches"]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "Multi-Touch Sales Follow-Up Cadence Workflow",
+  "version": "1.0.0",
+  "trigger": "cadence_scheduled",
+  "description": "Executes 4-touch omnichannel follow-ups with AI personalized drafting and tracking.",
+  "touches": [
+    {
+      "step": 1,
+      "delay_days": 1,
+      "channel": "EMAIL",
+      "template": "cold_intro",
+      "auto_dispatch": true,
+      "goal": "Introduce value proposition & ask low-friction discovery question"
+    },
+    {
+      "step": 2,
+      "delay_days": 3,
+      "channel": "EMAIL",
+      "template": "case_study",
+      "auto_dispatch": true,
+      "goal": "Highlight 3.4x conversion benchmark and customer ROI"
+    },
+    {
+      "step": 3,
+      "delay_days": 6,
+      "channel": "LINKEDIN",
+      "template": "social_touch",
+      "auto_dispatch": false,
+      "goal": "Send connection request & personalized note"
+    },
+    {
+      "step": 4,
+      "delay_days": 10,
+      "channel": "EMAIL",
+      "template": "break_up",
+      "auto_dispatch": true,
+      "goal": "Graceful permission-to-close inquiry and resource share"
+    }
+  ]
+}

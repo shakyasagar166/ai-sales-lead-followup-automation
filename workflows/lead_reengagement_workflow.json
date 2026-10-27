@@ -1,0 +1,28 @@
+{
+  "name": "Stalled Lead Re-Engagement & Win-Back Workflow",
+  "version": "1.0.0",
+  "trigger": "inactivity_threshold_exceeded_30_days",
+  "description": "Revives dormant opportunities and uncontacted prospects with fresh product updates and QA benchmarks.",
+  "actions": [
+    {
+      "step": 1,
+      "type": "rescore",
+      "action": "refresh_enrichment_data"
+    },
+    {
+      "step": 2,
+      "type": "agent",
+      "agent": "MessageGenerationAgent",
+      "params": {
+        "objective": "Re-engagement with new enterprise test automation release",
+        "tone": "Casual & Insight-Driven"
+      }
+    },
+    {
+      "step": 3,
+      "type": "notify_rep",
+      "channel": "SLACK_OR_EMAIL",
+      "message": "Re-engagement touch queued for approval"
+    }
+  ]
+}
